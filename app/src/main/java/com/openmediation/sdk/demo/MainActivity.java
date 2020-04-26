@@ -81,18 +81,18 @@ public class MainActivity extends Activity {
 
 
     private void initSDK() {
-        NewApiUtils.printLog("start init sdk");
+        NewApiUtils.printInfo("start init sdk");
         OmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {
             @Override
             public void onSuccess() {
-                NewApiUtils.printLog("init success");
+                NewApiUtils.printInfo("init success");
                 setVideoListener();
                 setInterstitialListener();
             }
 
             @Override
             public void onError(Error result) {
-                NewApiUtils.printLog("init failed " + result.toString());
+                NewApiUtils.printInfo("init failed " + result.toString());
 
             }
         });
@@ -109,37 +109,37 @@ public class MainActivity extends Activity {
 
             @Override
             public void onRewardedVideoAdShowed(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdShowed " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdShowed " + scene);
             }
 
             @Override
             public void onRewardedVideoAdShowFailed(Scene scene, Error error) {
-                NewApiUtils.printLog("onRewardedVideoAdShowFailed " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdShowFailed " + scene);
             }
 
             @Override
             public void onRewardedVideoAdClicked(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdClicked " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdClicked " + scene);
             }
 
             @Override
             public void onRewardedVideoAdClosed(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdClosed " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdClosed " + scene);
             }
 
             @Override
             public void onRewardedVideoAdStarted(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdStarted " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdStarted " + scene);
             }
 
             @Override
             public void onRewardedVideoAdEnded(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdEnded " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdEnded " + scene);
             }
 
             @Override
             public void onRewardedVideoAdRewarded(Scene scene) {
-                NewApiUtils.printLog("onRewardedVideoAdRewarded " + scene);
+                NewApiUtils.printInfo("onRewardedVideoAdRewarded " + scene);
             }
         });
     }
@@ -156,22 +156,22 @@ public class MainActivity extends Activity {
 
             @Override
             public void onInterstitialAdShowed(Scene scene) {
-                NewApiUtils.printLog("onInterstitialAdShowed " + scene);
+                NewApiUtils.printInfo("onInterstitialAdShowed " + scene);
             }
 
             @Override
             public void onInterstitialAdShowFailed(Scene scene, Error error) {
-                NewApiUtils.printLog("onInterstitialAdShowFailed " + scene);
+                NewApiUtils.printInfo("onInterstitialAdShowFailed " + scene);
             }
 
             @Override
             public void onInterstitialAdClosed(Scene scene) {
-                NewApiUtils.printLog("onInterstitialAdClosed " + scene);
+                NewApiUtils.printInfo("onInterstitialAdClosed " + scene);
             }
 
             @Override
             public void onInterstitialAdClicked(Scene scene) {
-                NewApiUtils.printLog("onInterstitialAdClicked " + scene);
+                NewApiUtils.printInfo("onInterstitialAdClicked " + scene);
             }
         });
     }
@@ -205,8 +205,9 @@ public class MainActivity extends Activity {
                             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
                     adContainer.addView(view, layoutParams);
+                    NewApiUtils.printInfo("onAdReadySuccess 广告已显示");
                 } catch (Exception e) {
-                    Log.e("AdtDebug", e.getLocalizedMessage());
+                    NewApiUtils.printInfo("onAdReadyError "+e.getMessage());
                 }
                 bannerButton.setEnabled(true);
                 bannerButton.setText("Load And Show Banner Ad");
@@ -216,12 +217,12 @@ public class MainActivity extends Activity {
             public void onAdFailed(String error) {
                 bannerButton.setEnabled(true);
                 bannerButton.setText("Banner Load Failed, Try Again");
-
+                NewApiUtils.printInfo("onAdFailed "+error);
             }
 
             @Override
             public void onAdClicked() {
-
+                NewApiUtils.printInfo("onAdClicked 被点击");
             }
         });
         bannerAd.loadAd();
@@ -239,6 +240,7 @@ public class MainActivity extends Activity {
             public void onAdFailed(String msg) {
                 nativeButton.setEnabled(true);
                 nativeButton.setText("Native Load Failed, Try Again");
+                NewApiUtils.printInfo("onAdFailed Native -> "+msg);
             }
 
             @Override
@@ -283,11 +285,13 @@ public class MainActivity extends Activity {
                 adContainer.addView(nativeAdView, layoutParams);
                 nativeButton.setEnabled(true);
                 nativeButton.setText("Load And Show Native Ad");
+                NewApiUtils.printInfo("onAdReady Native");
+
             }
 
             @Override
             public void onAdClicked() {
-
+                NewApiUtils.printInfo("onAdClicked Native "+"被点击");
             }
         });
 

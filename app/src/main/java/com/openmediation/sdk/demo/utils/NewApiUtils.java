@@ -15,9 +15,14 @@ public class NewApiUtils {
     public static final String P_BANNER = "6042";
     public static final String P_NATIVE = "6041";
 
-    public static void printLog(String msg) {
+    public static void printError(String msg) {
         if (ENABLE_LOG) {
             Log.e(TAG, msg);
+        }
+    }
+    public static void printInfo(String msg) {
+        if (ENABLE_LOG) {
+            Log.i(TAG, msg);
         }
     }
 }
