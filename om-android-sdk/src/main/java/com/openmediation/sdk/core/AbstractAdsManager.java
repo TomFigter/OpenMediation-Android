@@ -549,11 +549,13 @@ public abstract class AbstractAdsManager extends AdsApi implements InitCallback,
             mLoadType = type;
             isAReadyReported.set(false);
             mBidResponses.clear();
-            if (mPlacement.hasHb()) {
-                HbHelper.executeHb(mPlacement, type, this);
-            } else {
-                WaterFallHelper.wfRequest(getPlacementInfo(), mLoadType, null, this);
-            }
+            // TODO: 2020-04-26 去除这个hasHb判定，因为Hb接口返回的数据有问题 
+//            if (mPlacement.hasHb()) {
+//                HbHelper.executeHb(mPlacement, type, this);
+//            } else {
+//                WaterFallHelper.wfRequest(getPlacementInfo(), mLoadType, null, this);
+//            }
+            WaterFallHelper.wfRequest(getPlacementInfo(), mLoadType, null, this);
         } catch (Exception e) {
             Error error = ErrorBuilder.build(ErrorCode.CODE_LOAD_INVALID_REQUEST
                     , ErrorCode.MSG_LOAD_INVALID_REQUEST, ErrorCode.CODE_LOAD_UNKNOWN_INTERNAL_ERROR);

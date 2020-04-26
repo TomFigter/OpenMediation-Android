@@ -138,7 +138,7 @@ public final class OmManager implements InitCallback {
             if (callback != null) {
                 callback.onSuccess();
             }
-            //checks for preloading and scheduled tasks
+            //checks for preloading and scheduled tasks†
             anotherInitCalledAfterInitSuccess(types);
             return;
         } else if (InitImp.isInitRunning()) {
@@ -650,7 +650,7 @@ public final class OmManager implements InitCallback {
                 continue;
             }
             Placement placement = placementEntry.getValue();
-            if (placement != null) {
+            if (placement != null) {//判定config数据的广告类型
                 int adType = placement.getT();
                 String placementId = placement.getId();
                 switch (adType) {
@@ -662,7 +662,7 @@ public final class OmManager implements InitCallback {
                         }
                         break;
                     case CommonConstants.VIDEO:
-                        if (!mRvManagers.containsKey(placementId)) {
+                        if (!mRvManagers.containsKey(placementId)) {//不包含 placementId 时再进行添加
                             RvManager rvManager = new RvManager();
                             rvManager.setCurrentPlacement(placement);
                             mRvManagers.put(placementId, rvManager);
@@ -724,7 +724,7 @@ public final class OmManager implements InitCallback {
         }
         return PlacementUtils.getPlacement(placementId);
     }
-
+    //预加载不同类型的广告
     private void preloadAdWithAdType() {
         DeveloperLog.LogD("preloadAdWithAdType");
         Configurations config = DataCache.getInstance().getFromMem(KeyConstants.KEY_CONFIGURATION, Configurations.class);
@@ -740,8 +740,8 @@ public final class OmManager implements InitCallback {
         Set<Map.Entry<String, Placement>> placements = placementMap.entrySet();
         if (mPreloadAdTypes.isEmpty()) {
             DeveloperLog.LogD("preload all ad");
-            preloadIS(placements);
-            preloadRV(placements);
+            preloadIS(placements);//插页广告
+            preloadRV(placements);//奖励视频
         } else {
             for (AD_TYPE adType : mPreloadAdTypes) {
                 if (adType == AD_TYPE.INTERSTITIAL) {

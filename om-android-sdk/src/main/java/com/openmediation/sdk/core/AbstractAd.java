@@ -48,7 +48,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * The type Abstract ad.
+ * 抽象广告类型
  */
 public abstract class AbstractAd extends Callback implements Request.OnRequestCallback,
         AuctionCallback, InitCallback, HbHelper.OnHbCallback {
@@ -481,6 +481,7 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
             //returns if load can't start
             Error error = checkLoadAvailable();
             if (error != null) {
+                callbackAdErrorOnUiThread(error.toString());
                 AdsUtil.loadBlockedReport(Preconditions.checkNotNull(mPlacement) ? mPlacement.getId() : "", error);
                 return;
             }
@@ -553,8 +554,9 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
                         , ErrorCode.MSG_LOAD_INVALID_REQUEST, ErrorCode.CODE_INTERNAL_UNKNOWN_OTHER);
             }
         }
-
-        if (AdRateUtil.shouldBlockPlacement(mPlacement) || AdRateUtil.isPlacementCapped(mPlacement)) {
+        // TODO: 2020-04-26 去掉访问限制判定
+//        if (AdRateUtil.shouldBlockPlacement(mPlacement) || AdRateUtil.isPlacementCapped(mPlacement)) {  
+        if (AdRateUtil.shouldBlockPlacement(mPlacement)) {
             callbackAdErrorOnUiThread(ErrorCode.ERROR_NO_FILL);
             return ErrorBuilder.build(ErrorCode.CODE_LOAD_INVALID_REQUEST
                     , ErrorCode.MSG_LOAD_INVALID_REQUEST, ErrorCode.CODE_INTERNAL_UNKNOWN_OTHER);

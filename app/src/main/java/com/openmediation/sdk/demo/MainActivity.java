@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.adtiming.adt.demo.R;
+import com.openmediation.sdk.core.OmManager;
 import com.openmediation.sdk.demo.utils.NewApiUtils;
 import com.openmediation.sdk.InitCallback;
 import com.openmediation.sdk.OmAds;
@@ -192,7 +193,7 @@ public class MainActivity extends Activity {
         if (bannerAd != null) {
             bannerAd.destroy();
         }
-        bannerAd = new BannerAd(this, NewApiUtils.P_BANNER, new BannerAdListener() {
+        bannerAd = new BannerAd(this, "104", new BannerAdListener() {
             @Override
             public void onAdReady(View view) {
                 try {
@@ -233,7 +234,7 @@ public class MainActivity extends Activity {
             nativeAd.destroy();
         }
         adContainer.removeAllViews();
-        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, new NativeAdListener() {
+        nativeAd = new NativeAd(this, "105", new NativeAdListener() {
             @Override
             public void onAdFailed(String msg) {
                 nativeButton.setEnabled(true);

@@ -1,5 +1,14 @@
-include ':adapter:applovin', ':adapter:chartboost', ':adapter:adcolony', ':adapter:mintegral', ':adapter:adtiming',
-        ':adapter:tapjoy', ':adapter:vungle',
-        ':adapter:unity', ':adapter:facebook', ':adapter:mopub',
-        ':om-android-sdk', ':adapter:admob', ':app',
-rootProject.name = 'AdTiming-OM-Android'
+include ':adapter:applovin'
+include ':adapter:chartboost'
+include ':adapter:adcolony'
+include ':adapter:mintegral'
+include ':adapter:adtiming'
+include ':adapter:tapjoy'
+include ':adapter:vungle'
+include ':adapter:unity'
+include ':adapter:facebook'
+include ':adapter:mopub'
+include ':om-android-sdk'
+include ':adapter:admob'
+include ':app'
+//rootProject.name = 'AdTiming-OM-Android'

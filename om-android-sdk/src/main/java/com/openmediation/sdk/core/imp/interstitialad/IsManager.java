@@ -62,7 +62,6 @@ public final class IsManager extends AbstractAdsManager implements IsManagerList
         isInstance.setIsManagerListener(this);
         isInstance.initIs(mActivity);
     }
-
     @Override
     protected boolean isInsAvailable(Instance instance) {
         if (instance instanceof IsInstance) {

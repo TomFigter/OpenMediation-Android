@@ -290,9 +290,9 @@ public final class InitImp {
                 Configurations config = ConfigurationHelper.parseFormServerResponse(requestData);
                 if (config != null) {
                     DeveloperLog.LogD("Om init request config success");
-                    DataCache.getInstance().setMEM(KeyConstants.KEY_CONFIGURATION, config);
+                    DataCache.getInstance().setMEM(KeyConstants.KEY_CONFIGURATION, config); //将从服务器拉取的config数据 存入本地数据库
                     callbackInitSuccessOnUIThread();
-
+                    //获取config数据后的后续操作
                     doAfterGetConfig(appKey, config);
                 } else {
                     Error error = new Error(ErrorCode.CODE_INIT_SERVER_ERROR

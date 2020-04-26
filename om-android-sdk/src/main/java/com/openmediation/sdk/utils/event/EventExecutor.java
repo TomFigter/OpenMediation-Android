@@ -28,7 +28,14 @@ class EventExecutor {
     private EventExecutor() {
     }
 
-
+    /**
+     *
+     * @param command       任务实例
+     * @param initialDelay  延迟时间
+     * @param delay         间隔时间
+     * @param unit          时间单位
+     * @return
+     */
     public static ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
         return POOL.scheduleWithFixedDelay(command, initialDelay, delay, unit);
     }

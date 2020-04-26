@@ -6,7 +6,7 @@ package com.openmediation.sdk;
 import com.openmediation.sdk.utils.error.Error;
 
 /**
- * SDK init callback, to notify about SDK init results
+ * SDK初始化接口回调
  */
 public interface InitCallback {
     /**

@@ -165,7 +165,7 @@ public class EventUploadManager implements Request.OnRequestCallback {
             return;
         }
         mEventsSettings = configurations.getEvents();
-        mMaxReportEventsCount.set(mEventsSettings.getMn());
+        mMaxReportEventsCount.set(mEventsSettings.getMn());//最大报告事件量
         if (mEventsSettings.getIds() != null) {
             mAllowedEvents.addAll(mEventsSettings.getIds());
         }

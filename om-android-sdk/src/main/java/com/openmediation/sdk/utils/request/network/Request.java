@@ -57,18 +57,18 @@ public class Request {
 
 
     /**
-     * The interface On request callback.
+     * 网络请求接口
      */
     public interface OnRequestCallback {
         /**
-         * On request success.
+         * 请求成功
          *
          * @param response the response
          */
         void onRequestSuccess(Response response);
 
         /**
-         * On request failed.
+         * 请求失败
          *
          * @param error the error
          */
